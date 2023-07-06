@@ -1,6 +1,9 @@
 package ru.batorov.springmvc.models;
 
 import java.util.Date;
+
+import org.springframework.data.annotation.Transient;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,8 +46,9 @@ public class Book {
     @Temporal(TemporalType.TIMESTAMP)
     private Date takeTime;
 
-    
-    
+    @Transient
+    boolean expired;
+
     public Book() {
     }
 
@@ -103,5 +107,13 @@ public class Book {
 
     public void setTakeTime(Date takeTime) {
         this.takeTime = takeTime;
+    }
+    
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 }
