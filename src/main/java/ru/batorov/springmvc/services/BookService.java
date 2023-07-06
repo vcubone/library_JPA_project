@@ -48,7 +48,12 @@ public class BookService {
     @Transactional
     public void update(int bookId, Book updatedBook)
     {
+        Book bookToBeUpdated = bookRepository.findById(bookId).orElse(null);
+        if (bookToBeUpdated == null)
+            return;
+        updatedBook.setOwner(bookToBeUpdated.getOwner());
         updatedBook.setBookId(bookId);
+        updatedBook.setTakeTime(bookToBeUpdated.getTakeTime());
         bookRepository.save(updatedBook);
     }
     
