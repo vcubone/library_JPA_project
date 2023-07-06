@@ -8,18 +8,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import ru.batorov.springmvc.models.Person;
-import ru.batorov.springmvc.repositories.PeopleRepository;
+import ru.batorov.springmvc.services.PeopleService;
 
 
 
 @Component
 public class PersonValidator implements Validator{
 
-    private final PeopleRepository peopleRepository;
+    private final PeopleService peopleService;
     
     @Autowired
-    public PersonValidator(PeopleRepository peopleRepository) {
-        this.peopleRepository = peopleRepository;
+    public PersonValidator(PeopleService peopleService) {
+        this.peopleService = peopleService;
     }
 
     //показывает к какой сущности относится валидатор
@@ -32,7 +32,7 @@ public class PersonValidator implements Validator{
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
         //есть ли человек с таким же ФИО
-        Optional<Person> opPerson = peopleRepository.findByFullName(person.getFullName()).stream().findAny();
+        Optional<Person> opPerson = peopleService.getPersonByFullName(person.getFullName()).stream().findAny();
         if (opPerson.isPresent() && person.getPersonId() != opPerson.get().getPersonId())
         {
             errors.rejectValue("fullName", "", "this full_name is already taken");

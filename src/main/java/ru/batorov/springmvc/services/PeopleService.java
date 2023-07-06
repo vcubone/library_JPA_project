@@ -68,4 +68,8 @@ public class PeopleService {
         }
         return Collections.emptyList();
     }
+    
+    public List<Person> getPersonByFullName(String name){
+        return peopleRepository.findByFullName(name);
+    }
 }
