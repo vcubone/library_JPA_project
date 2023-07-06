@@ -2,7 +2,6 @@ package ru.batorov.springmvc.models;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Transient;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -47,7 +47,7 @@ public class Book {
     private Date takeTime;
 
     @Transient
-    boolean expired;
+    private boolean expired;
 
     public Book() {
     }
