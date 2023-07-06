@@ -24,7 +24,7 @@ public class BookService {
     }
     
     public List<Book> all() {
-        return bookRepository.findAll();
+        return all(false);
     }
     //sort
     public List<Book> all(Boolean sortByYear) {

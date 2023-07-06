@@ -1,7 +1,5 @@
 package ru.batorov.springmvc.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
-
 import ru.batorov.springmvc.models.Book;
 import ru.batorov.springmvc.models.Person;
 import ru.batorov.springmvc.services.BookService;
@@ -36,9 +33,9 @@ public class BookController {
 
     @GetMapping()
     public String all(Model model,
-        @RequestParam(value = "sortByYear", required = false)       boolean sortByYear,
-        @RequestParam(value = "page", required = false)             Integer page,
-        @RequestParam(value = "itemsPerPage", required = false)     Integer itemsPerPage)
+        @RequestParam(value = "sortByYear", required = false)		boolean sortByYear,
+        @RequestParam(value = "page", required = false)				Integer page,
+        @RequestParam(value = "itemsPerPage", required = false)		Integer itemsPerPage)
     {
         System.out.println("test\n");
         if (page != null && itemsPerPage != null)
