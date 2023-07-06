@@ -1,11 +1,15 @@
 package ru.batorov.springmvc.services;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ru.batorov.springmvc.models.Book;
 import ru.batorov.springmvc.models.Person;
 import ru.batorov.springmvc.repositories.PeopleRepository;
 
@@ -47,5 +51,21 @@ public class PeopleService {
     public void delete(int person_id)
     {
         peopleRepository.deleteById(person_id);
+    }
+    
+    public List<Book> getBooksByPersonId(int person_id)
+    {
+        Person person = show(person_id);
+        if (person != null)
+        {
+            Hibernate.initialize(person.getBooks());
+            
+            person.getBooks().forEach(book->{
+                long time = Math.abs(new Date().getTime() - book.getTakeTime().getTime());
+                book.setExpired(864000000 < time);
+            });
+            return person.getBooks();
+        }
+        return Collections.emptyList();
     }
 }
