@@ -13,14 +13,20 @@
     <p th:text="${person.getPersonId()}">VALUE</p>
 
     
-    <div th:if="${books}">
+    <div th:unless="${books.isEmpty()}">
         <hr/>
-    <b>Книги:</b>
-    <br/>
-    <table th:each="book : ${books}">
-        <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getReleaseYear()}">book</tr>
-    </table>
-    <hr/>
+        <b>Книги:</b>
+        <br/>
+        <table th:each="book : ${books}">
+            <tr>
+                <td>
+                    <span th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getReleaseYear()}" th:style="${book.isExpired() ? 'color:red' : ''}">
+                        book
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <hr/>
     </div>
     
     <div th:if="${books.isEmpty()}">
