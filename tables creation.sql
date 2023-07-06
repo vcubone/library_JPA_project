@@ -10,5 +10,5 @@ create table book(
     title varchar(100) not null,
     author varchar(100) not null,
     releaseYear int not null,
-    takeTime timestamp not null
+    takeTime timestamp
 );

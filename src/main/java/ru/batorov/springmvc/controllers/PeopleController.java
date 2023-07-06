@@ -32,7 +32,7 @@ public class PeopleController {
     
     @GetMapping()
     public String all(Model model){
-        model.addAttribute("people", peopleService.findAll());
+        model.addAttribute("people", peopleService.all());
         return "people/all";
     }
 

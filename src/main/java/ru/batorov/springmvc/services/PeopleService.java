@@ -20,7 +20,7 @@ public class PeopleService {
         this.peopleRepository = peopleRepository;
     }
     
-    public List<Person> findAll()
+    public List<Person> all()
     {
         return peopleRepository.findAll();
     }
